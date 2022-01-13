@@ -54,7 +54,7 @@ class UserStoryForm(ModelForm):
             'reason':'so that I can '
         }
         widgets= {
-            'who': forms.TextInput(attrs={'placeholder':'Service Name'}),
-            'desire': forms.TextInput(attrs={'placeholder':'Service Name'}),
-            'reason': forms.TextInput(attrs={'placeholder':'Service Name'}),
+            'who': forms.TextInput(attrs={'placeholder':'e.g: User '}),
+            'desire': forms.TextInput(attrs={'placeholder':'e.g: see the statuses'}),
+            'reason': forms.TextInput(attrs={'placeholder':'e.g: I can list them'}),
               }

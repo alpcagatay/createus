@@ -15,10 +15,20 @@
      
     
         <form action="" method = POST enctype="multipart/form-data" >
-        {% csrf_token %}
+            {% csrf_token %}
 
-        {{ form.as_p }}
+        
+        <div class="justify-content: space-between">
+            {{ form}} <button type="button" id="add_row" name="add_row" class="btn btn-primary float-right"><span aria-hidden="true">Add Row</span></button>
+          </div>
+        </div>
 
+
+        <br>
+        <br>
+        <br>
+
+        
         <input type = "submit" value="Submit" class="btn btn-secondary"> 
 
     </form>

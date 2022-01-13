@@ -97,7 +97,7 @@ def add_user_story(request):
         form = UserStoryForm(request.POST, request.FILES)
         if form.is_valid():
             userstory = form.save(commit=False)
-            userstory.owner = request.user.id
+            userstory.owner = request.user
             userstory.save()
             return HttpResponseRedirect('/add_user_story?submitted=True')
     else: 
