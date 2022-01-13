@@ -18,8 +18,12 @@ class MyClubUser(models.Model):
         return str(self.user)
 
 class UserStory(models.Model):
-    owner = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    
+    first= models.TextField(default="As")
+    owner = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    second = models.TextField(default="I would like to")
     who = models.TextField()
+    third = models.TextField(default="so that I can")
     desire = models.TextField()
     reason = models.TextField()
     

@@ -10,6 +10,8 @@ urlpatterns = [
     path('change_password/', views.change_password, name="change_password"),
     path('user_profile/', views.user_profile, name="user_profile"),
     path('add_user_story/', views.add_user_story, name="add_user_story"),
+    path('my_user_stories/', views.my_user_stories, name="my_user_stories"),
+    path('userstory_csv/', views.userstory_csv, name="userstory_csv"),
 
 
 ]

@@ -1,4 +1,5 @@
-from django.http import request
+
+from django.http import request, HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -7,11 +8,13 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 from .forms import EditProfileForm, SignUpForm, UserStoryForm
 from urllib.parse import urlencode
 from urllib.parse import urlparse, parse_qsl
-from .models import MyClubUser
+from .models import MyClubUser,UserStory
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.forms import modelformset_factory
+import csv
 
 
 # Create your views here.
@@ -94,7 +97,7 @@ def user_profile(request):
 def add_user_story(request):
     submitted = False
     if request.method == "POST":
-        form = UserStoryForm(request.POST, request.FILES)
+        form = UserStoryForm(request.POST)
         if form.is_valid():
             userstory = form.save(commit=False)
             userstory.owner = request.user
@@ -105,5 +108,38 @@ def add_user_story(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'add_user_story.html', {'form':form, 'submitted':submitted})
+
+
+def my_user_stories(request):
+    if request.user.is_authenticated:
+        me = request.user.id
+        userstory = UserStory.objects.filter(owner = me)
+        return render(request, 'my_user_stories.html', {'me':me, 'userstory':userstory})
+    else:
+        messages.success(request, ("You are not logged in"))
+        return redirect('login')
+
+def userstory_csv(request):
+    
+    me = request.user.id
+    response = HttpResponse(content_type ='text/csv' )
+    response['Content-Disposition'] = 'attachment; filename = userstory.csv'
+
+    # Create a writer
+    writer = csv.writer(response)
+
+    #Designate the model
+    userstory = UserStory.objects.all()
+
+    # Add column headings
+    writer.writerow(['First','Who','Second','Desire','Third','Reason'])
+
+   
+        #Loop through and output.
+    for userstory in userstory:
+        writer.writerow([(userstory.first),(userstory.who),(userstory.second),(userstory.desire),(userstory.third),(userstory.reason)])
+
+
+    return response
 
 

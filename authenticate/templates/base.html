@@ -19,34 +19,47 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Profile</a>
-              </li>
+              
               {%if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Log out</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'edit_profile' %}">Edit Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'change_password' %}">Change Password</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'user_profile' %}">User Profile</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Profile
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                  <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a></li>
+                  <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
+                  <li><a class="dropdown-item" href="{% url 'user_profile' %}">User Profile</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                </ul>
               </li>
               {%else%}
-
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Log in</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Register</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Profile
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
+                  <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                </ul>
               </li>
               {%endif%}
+              
+
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'add_user_story' %}">Create US</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'my_user_stories' %}">My User Stories</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'userstory_csv' %}">Export US</a>
+              </li>
+
+
+
+              
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Awards

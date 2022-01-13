@@ -5,7 +5,7 @@ from django import forms
 from django.db.models.base import Model
 from django.forms import fields, ModelForm, widgets
 from .models import MyClubUser, UserStory
-
+from django.forms import inlineformset_factory
 
 
 class EditProfileForm(UserChangeForm):
@@ -58,3 +58,5 @@ class UserStoryForm(ModelForm):
             'desire': forms.TextInput(attrs={'placeholder':'e.g: see the statuses'}),
             'reason': forms.TextInput(attrs={'placeholder':'e.g: I can list them'}),
               }
+        
+     

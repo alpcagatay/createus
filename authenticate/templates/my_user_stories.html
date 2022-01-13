@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<h2 class="text-center">My User Stories</h2>
+<br>
+Username: {{user.myclubuser.user}}
+<br>
+Role: {{user.myclubuser.role}}
+<br>
+<br>
+{% for userstory in userstory %}
+   <ul>
+
+   - As <strong>{{userstory.who}}</strong>, I would like to <strong>{{userstory.desire}}</strong> so that I can <strong>{{userstory.reason}}</strong>
+   <br>
+   </ul>
+   {% endfor %}
+<!-- {% for userstory in userstorys %}
+<li>As {{ userstory.who }}, I would like to {{userstory.desire}} so that I can {{userstory.reason}} </li>
+{{ userstory }}
+    <br>
+
+
+{% endfor %} -->
+
+
+  {% endblock %}
