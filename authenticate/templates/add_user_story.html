@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+    <center>
+    <h1>Add User Story</h1>
+    <br>ID: {{ user.id }}
+        <br/><br>
+        {% if submitted %}
+            Your user story was submitted succesfully!
+        {% else %}
+        
+     
+    
+        <form action="" method = POST enctype="multipart/form-data" >
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type = "submit" value="Submit" class="btn btn-secondary"> 
+
+    </form>
+    {% endif %}
+    </center>
+
+  {% endblock %}
