@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<h2 class="text-center">User Stories</h2>
+<br>
+<br>
+<br>
+<br>
+{% for userstories in userstories %}
+   <ul>
+
+   - As <strong>{{userstories.who}}</strong>, I would like to <strong>{{userstories.desire}}</strong> so that I can <strong>{{userstories.reason}}</strong>      
+   <br>    Project: <strong>{{userstories.category}}</strong>
+   <a href="{% url 'update_userstory' userstories.id %}" class= "btn btn-outline-secondary btn-sm">Update</a>
+   <a href="{% url 'delete_userstory' userstories.id %}" class= "btn btn-outline-danger btn-sm">Delete</a>
+
+   {% if user.profile_picture %}
+   <br>
+   <br>
+
+    <pre style="margin-top: 10px;"><img src="{{userstories.owner.profile_picture.url}}" class="rounded-circle" width="25" height="30"> {{userstories.owner}}</pre>
+   
+   {% else %}
+   <pre>{{userstories.owner}}</pre>
+   <br>
+   {% endif %}
+   </ul>
+   {% endfor %}
+<!-- {% for userstory in userstorys %}
+<li>As {{ userstory.who }}, I would like to {{userstory.desire}} so that I can {{userstory.reason}} </li>
+{{ userstory }}
+    <br>
+
+
+{% endfor %} -->
+
+
+  {% endblock %}

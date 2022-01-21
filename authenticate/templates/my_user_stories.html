@@ -6,9 +6,9 @@
 
 <h2 class="text-center">My User Stories</h2>
 <br>
-Username: {{user.myclubuser.user}}
+Username: {{user.username}}
 <br>
-Role: {{user.myclubuser.role}}
+Role: {{user.role}}
 <br>
 <br>
 {% for userstory in userstory %}
@@ -16,6 +16,8 @@ Role: {{user.myclubuser.role}}
 
    - As <strong>{{userstory.who}}</strong>, I would like to <strong>{{userstory.desire}}</strong> so that I can <strong>{{userstory.reason}}</strong>
    <br>
+   <br>
+   Project: <strong>{{userstory.category}}</strong>
    </ul>
    {% endfor %}
 <!-- {% for userstory in userstorys %}

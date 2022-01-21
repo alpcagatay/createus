@@ -51,12 +51,17 @@
                 <a class="nav-link" href="{% url 'add_user_story' %}">Create US</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'list_userstories' %}">List All UserStories</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'my_user_stories' %}">My User Stories</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'userstory_csv' %}">Export US</a>
               </li>
-
 
 
               
@@ -65,8 +70,8 @@
                   Awards
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Leaderboard</a></li>
-                  <li><a class="dropdown-item" href="#">Badges</a></li>
+                  <li><a class="dropdown-item" href="{% url 'leaderboard' %}">Leaderboard</a></li>
+                  <li><a class="dropdown-item" href="{% url 'badges' %}">Badges</a></li>
                   <li><hr class="dropdown-divider"></li>
                 </ul>
               </li>

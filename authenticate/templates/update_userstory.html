@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{% if user == userstory.owner %}
+
+
+    <h1>Update User Story</h1>
+        <br/><br>
+    
+        {{ userstory }}
+    
+        <form action="" method = POST enctype="multipart/form-data" >
+            {% csrf_token %}
+
+        
+        <div class="justify-content: space-between">
+            {{ form.category}} 
+            <br>
+            <br>
+            As   {{ form.second }}  {{ form.who }} I would like to  {{ form.desire }} so that I can {{ form.reason }}.  
+
+<br>
+        <input type = "submit" value="Update" class="btn btn-secondary"> 
+
+        {% else %}
+        <h2>Access Denied, only the userstory owner can update the contents of this userstory</h2>
+        <br>
+        Logged In User: {{ user }}
+        <br>
+        Provider: {{service.provider}}
+        <br/><br>
+        {% endif %}
+
+{% else %}
+            <h1>Sorry!, You must be logged in to view this page...</h1>
+
+            <a href="{%url 'login' %}">Login Here</a>
+       {% endif %}
+
+    </form>
+
+    
+
+  {% endblock %}

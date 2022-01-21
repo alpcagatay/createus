@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<h1 class="text-center">Leaderboard</h1>
+<br>
+
+
+<br>
+
+<br>
+
+<br>
+
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+       
+        <th>Username</th>
+        <th>Number Of UserStories Written</th>
+      </tr>
+  
+      <tr>
+        {% for user in user_list %}
+       
+        <td>{{user}}</td>
+        <td>{{user.numberofus}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+
+
+  {% endblock %}
