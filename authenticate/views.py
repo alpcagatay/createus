@@ -233,3 +233,11 @@ def leaderboard(request):
     # else:
     #     messages.success(request, ("You are not logged in"))
     #     return redirect('login')
+@login_required
+def search_results(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        result = UserStory.objects.filter(Q(category__contains=searched) | Q(who__contains=searched) | Q(desire__contains=searched) | Q(reason__contains=searched))
+        return render(request, 'search_results.html', {'searched':searched, 'result':result })
+    else:
+        return render(request, 'search_results.html', {})

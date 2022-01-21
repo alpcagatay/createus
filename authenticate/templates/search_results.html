@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if searched %}
+
+<h1>You searched for {{searched}} in the project names.</h1>
+<br>
+
+
+{% for results in result %}
+   
+- As <strong>{{results.who}}</strong>, I would like to <strong>{{results.desire}}</strong> so that I can <strong>{{results.reason}}</strong>      
+  
+<br>    Project: <strong>{{results.category}}</strong>
+
+    <br>
+    <br>
+        {% endfor %}
+
+            
+        
+{% else %}
+<h1>Ooops, you did not make a search</h1>
+{% endif %}
+
+
+  {% endblock %}

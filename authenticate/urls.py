@@ -20,5 +20,6 @@ urlpatterns = [
     path('update_userstory/<userstory_id>', views.update_userstory, name="update_userstory"),
     path('badges/', views.badges, name="badges"),
     path('leaderboard/', views.leaderboard, name="leaderboard"),
+    path('search_results', views.search_results, name="search_results"),
 
 ]
