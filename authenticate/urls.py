@@ -21,5 +21,6 @@ urlpatterns = [
     path('badges/', views.badges, name="badges"),
     path('leaderboard/', views.leaderboard, name="leaderboard"),
     path('search_results', views.search_results, name="search_results"),
+    path('show_userstory/<userstory_id>', views.show_userstory, name="show_userstory"),
 
 ]

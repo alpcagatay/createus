@@ -241,3 +241,13 @@ def search_results(request):
         return render(request, 'search_results.html', {'searched':searched, 'result':result })
     else:
         return render(request, 'search_results.html', {})
+
+@login_required
+def show_userstory(request, userstory_id):
+    user = request.user
+    userstory = UserStory.objects.get(pk = userstory_id)
+    assigned_user =  UserStory.owner
+    return render(request, 'show_service.html', {
+        
+        "assigned_user": assigned_user 
+    })
