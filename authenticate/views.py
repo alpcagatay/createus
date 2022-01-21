@@ -170,12 +170,12 @@ def userstory_csv(request):
     userstory = UserStory.objects.all()
 
     # Add column headings
-    writer.writerow(['First','Who','Second','Desire','Third','Reason'])
+    writer.writerow(['Project','First','Who','Second','Desire','Third','Reason'])
 
    
         #Loop through and output.
     for userstory in userstory:
-        writer.writerow([(userstory.first),(userstory.who),(userstory.second),(userstory.desire),(userstory.third),(userstory.reason)])
+        writer.writerow([(userstory.category),(userstory.first),(userstory.who),(userstory.second),(userstory.desire),(userstory.third),(userstory.reason)])
 
 
     return response
