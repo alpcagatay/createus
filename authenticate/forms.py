@@ -15,7 +15,7 @@ class EditProfileForm(UserChangeForm):
     password = forms.CharField(label = "" ,widget = forms.TextInput())
     class Meta:
         model = User
-        fields = ('username','first_name','last_name','email','password')
+        fields = ('username','first_name','last_name','email')
 
 
 class CategoryForm(UserChangeForm):

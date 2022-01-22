@@ -178,7 +178,7 @@ def like_userstory(request, userstory_id):
 #     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-
+@login_required
 def add_category(request):
     submitted = False
     if request.method == "POST":
@@ -216,6 +216,7 @@ def login_user(request):
     else:
         return render(request,'login.html',{})
 
+@login_required
 def logout_user(request):
     logout(request)
     messages.success(request,('You have been logged out!'))
@@ -259,7 +260,7 @@ def edit_profile(request):
 
 
 
-
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(date=request.POST, user=request.user)
@@ -275,10 +276,11 @@ def change_password(request):
     context = {'form':form}
     return render(request, 'change_password.html',context)
 
+@login_required
 def user_profile(request):
     return render(request, 'user_profile.html')
 
-
+@login_required
 def add_user_story(request):
     submitted = False
     if request.method == "POST":
@@ -321,7 +323,7 @@ def add_user_story(request):
             submitted = True
     return render(request, 'add_user_story.html', {'form':form, 'submitted':submitted})
 
-
+@login_required
 def my_user_stories(request):
     if request.user.is_authenticated:
         me = request.user.id
@@ -331,6 +333,7 @@ def my_user_stories(request):
         messages.success(request, ("You are not logged in"))
         return redirect('login')
 
+@login_required
 def userstory_csv(request):
     
     me = request.user.id
