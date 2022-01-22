@@ -18,7 +18,11 @@ Role: {{user.role}}
    <br>
    <br>
    Project: <strong>{{userstory.category}}</strong>
+   <a href="{% url 'update_userstory' userstory.id %}" class= "btn btn-outline-secondary btn-sm">Update</a>
+   <a href="{% url 'delete_userstory' userstory.id %}" class= "btn btn-outline-danger btn-sm">Delete</a>
+
    </ul>
+   
    {% endfor %}
 <!-- {% for userstory in userstorys %}
 <li>As {{ userstory.who }}, I would like to {{userstory.desire}} so that I can {{userstory.reason}} </li>

@@ -22,5 +22,7 @@ urlpatterns = [
     path('leaderboard/', views.leaderboard, name="leaderboard"),
     path('search_results', views.search_results, name="search_results"),
     path('show_userstory/<userstory_id>', views.show_userstory, name="show_userstory"),
+    path('like_userstory/<userstory_id>', views.like_userstory, name="like_userstory"),
+    path('dislike_userstory/<userstory_id>', views.dislike_userstory, name="dislike_userstory"),
 
 ]

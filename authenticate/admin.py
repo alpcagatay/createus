@@ -20,7 +20,7 @@ class UserAdmin(DefaultUserAdmin):
     model = User
     add_form = UserCreationFrom
     form = UserChangeFrom
-    list_display = ["username", "is_active", "email", "role",'numberofus']
+    list_display = ["username", "is_active", "email", "role",'numberofus','rookie']
     exclude = (
         "groups",
         "is_staff",

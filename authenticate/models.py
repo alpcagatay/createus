@@ -1,3 +1,4 @@
+from email.policy import default
 from unicodedata import category
 from django import forms
 from django.core import validators
@@ -93,6 +94,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=0, 
         validators = [MaxValueValidator(1000),MinValueValidator(0)],
     )
+    rookie = models.TextField(
+        verbose_name="rookie",
+        blank=True,
+        null=True
+    )
+   
     
     
 
@@ -123,5 +130,6 @@ class UserStory(models.Model):
     reason = models.TextField()
     likes = models.ManyToManyField(User, blank = True, related_name = 'like')
     dislikes = models.ManyToManyField(User, blank = True, related_name = 'dislike')
-    
+    numberoflikes = models.PositiveBigIntegerField(default = 0)
+    numberofdislikes = models.PositiveIntegerField(default = 0)
 

@@ -27,6 +27,157 @@ from django.db.models import Avg, Count, Min, Sum
 
 
 
+def dislike_userstory(request, userstory_id):
+    userstory = UserStory.objects.get(pk =userstory_id)
+
+    is_like = False
+
+    for like in userstory.likes.all():
+        if like == request.user:
+            is_like = True
+            break
+
+    if is_like:
+        userstory.dislikes.remove(request.user)
+        userstory.numberofdislikes = userstory.numberofdislikes - 1
+        
+    
+    is_dislike = False
+
+    for dislike in userstory.dislikes.all():
+        if dislike == request.user:
+            is_dislike = True
+            break
+
+    if not is_dislike:
+        userstory.dislikes.add(request.user)
+        userstory.numberofdislikes = userstory.numberofdislikes + 1
+        
+
+    if is_dislike:
+        userstory.dislikes.remove(request.user)
+        userstory.numberofdislikes = userstory.numberofdislikes - 1
+        
+    userstory.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+def like_userstory(request, userstory_id):
+    userstory = UserStory.objects.get(pk =userstory_id)
+
+    is_dislike = False
+
+    for dislike in userstory.dislikes.all():
+        if dislike == request.user:
+            is_dislike = True
+            break
+
+    if is_dislike:
+        userstory.likes.remove(request.user)
+        userstory.numberoflikes = userstory.numberoflikes - 1
+        
+    
+    is_like = False
+
+    for like in userstory.likes.all():
+        if like == request.user:
+            is_like = True
+            break
+
+    if not is_like:
+        userstory.likes.add(request.user)
+        userstory.numberoflikes = userstory.numberoflikes + 1
+        
+
+    if is_like:
+        userstory.likes.remove(request.user)
+        userstory.numberoflikes = userstory.numberoflikes - 1
+        
+    userstory.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    
+    # userstory = UserStory.objects.get(pk = userstory_id)
+    # user = request.user
+    
+
+    # if (userstory.likes != request.user) and (userstory.dislikes != request.user):
+    #     userstory.likes.add(user)
+    #     userstory.numberoflikes = userstory.numberoflikes + 1
+    #     userstory.save()
+
+    # if (userstory.likes != request.user) and (userstory.dislikes == request.user):
+    #     userstory.dislikes.remove(user)
+    #     userstory.numberofdislikes = userstory.numberofdislikes - 1
+    #     userstory.likes.add(user)
+    #     userstory.numberoflikes = userstory.numberoflikes + 1
+    #     userstory.save()
+
+
+    # if (userstory.likes == request.user) and (userstory.dislikes != request.user):
+    #     userstory.likes.remove(user)
+    #     userstory.numberoflikes = userstory.numberoflikes - 1
+    #     userstory.save()
+    
+  
+
+
+    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))     
+
+
+#def dislike_userstory(request, userstory_id):
+    
+    
+    # userstory = UserStory.objects.get(pk = userstory_id)
+    # user = request.user
+    
+
+    # if (userstory.likes != request.user) and (userstory.dislikes != request.user):
+    #     userstory.dislikes.add(user)
+    #     userstory.numberofdislikes = userstory.numberofdislikes + 1
+    #     userstory.save()
+
+    # if (userstory.likes != request.user) and (userstory.dislikes == request.user):
+    #     userstory.dislikes.remove(user)
+    #     userstory.numberofdislikes = userstory.numberofdislikes - 1
+    #     userstory.save()
+
+
+    # if (userstory.likes == request.user) and (userstory.dislikes != request.user): 
+    #     userstory.likes.remove(user)
+    #     userstory.numberoflikes = userstory.numberoflikes - 1
+    #     userstory.dislikes.add(user)
+    #     userstory.numberofdislikes = userstory.numberofdislikes + 1
+    #     userstory.save()
+
+
+    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))     
+        
+    #     userstory.likes.remove(user)
+    #     userstory.numberoflikes = userstory.numberoflikes - 1
+    #     userstory.save()
+    # else:
+    #     userstory.likes.add(user)
+    #     userstory.numberoflikes = userstory.numberoflikes +1
+    #     userstory.save()
+    
+    
+
+
+
+
+# def dislike_userstory(request, userstory_id):
+#     userstory = UserStory.objects.get(pk = userstory_id)
+#     user = request.user
+#     userstory.dislikes.add(user)
+
+#     userstory.numberofdislikes = userstory.numberofdislikes + 1
+#     userstory.save()
+    
+#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
 
 def add_category(request):
     submitted = False
@@ -139,7 +290,30 @@ def add_user_story(request):
             userstory.save()
             user.numberofus = user.numberofus + 1
             user.save() 
-             
+            if user.numberofus == 1:
+                user.rookie = 'Rookie'
+                user.save()
+                messages.success(request, ("You got the Rookie Badge!"))
+            if user.numberofus == 10:
+                user.rookie = 'Rookie, Beginner'
+                user.save()
+                messages.success(request, ("You got the Beginner Badge!"))
+
+            if user.numberofus == 25:
+                user.rookie = 'Rookie, Beginner, Intermediate'
+                user.save()
+                messages.success(request, ("You got the Intermediate Badge!"))
+                
+            if user.numberofus == 50:
+                user.rookie = 'Rookie, Beginner, Intermediate, Advanced'
+                user.save()
+                messages.success(request, ("You got the Advanced Badge!"))
+
+            if user.numberofus == 100:
+                user.rookie = 'Rookie, Beginner, Intermediate, Advanced, Professional'
+                user.save()
+                messages.success(request, ("You got the Professional Badge!"))
+            
             return HttpResponseRedirect('/add_user_story?submitted=True')
     else: 
         form = UserStoryForm
@@ -251,3 +425,9 @@ def show_userstory(request, userstory_id):
         
         "assigned_user": assigned_user 
     })
+
+# def likes (request, userstory_id):
+#     user = request.user
+#     likes = UserStory.objects.get(pk = userstory_id)
+#     likes.likes.add(user)
+#     likes.save()
