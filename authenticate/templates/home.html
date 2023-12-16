@@ -9,15 +9,11 @@
 <h3>By using this platform you can create user stories easily.</h3>
 <h3>You can export the user stories that you have written by using this platform.</h3>
 
-
-
-
 {%if user.is_authenticated %}
 
 <p>Name: {{user.first_name}} {{user.last_name}}</p>
 <p>Username: {{user.username}}</p>
 <p>Email: {{user.email}}</p>
-
 
 {%endif%}
 
