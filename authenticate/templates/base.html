@@ -46,7 +46,6 @@
               </li>
               {%endif%}
               
-
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'add_user_story' %}">Create US</a>
               </li>
@@ -62,8 +61,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'userstory_csv' %}">Export US</a>
               </li>
-
-
               
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -92,13 +89,11 @@
             {% for message in messages %}
             <div class="alert alert-warning alert-dismissable" role="alert">
              
-                    
                 {{message}}
             </div>
 
       {% endfor %}
       {% endif %}
-
 
       {% block content %}
     {% endblock %}
