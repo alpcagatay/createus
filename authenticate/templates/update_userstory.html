@@ -5,7 +5,6 @@
 {% if user.is_authenticated %}
 {% if user == userstory.owner %}
 
-
     <h1>Update User Story</h1>
         <br/><br>
     
@@ -13,7 +12,6 @@
     
         <form action="" method = POST enctype="multipart/form-data" >
             {% csrf_token %}
-
         
         <div class="justify-content: space-between">
             {{ form.category}} 
@@ -42,7 +40,5 @@
        {% endif %}
 
     </form>
-
-    
 
   {% endblock %}
