@@ -2,15 +2,12 @@
 {% load static %}
 {% block content %}
 
-
-
 <h1 class="text-center">User Profile</h1>
 <br>
 <h2>Hello {{user}}</h2>
 
 {% if user.profile_picture %}
 <img src="{{user.profile_picture.url}}" width = 300 class="rounded">
-
 
 {% else %}
 <img src="" width = 300 class="rounded">
@@ -29,15 +26,7 @@
   Role: <strong>{{user.role}}</strong>
   <br>
 
-
-  
-
-
-
 {%if user.is_authenticated %}
-
-
-
 
 {%endif%}
 
